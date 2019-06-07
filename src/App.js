@@ -8,6 +8,7 @@ import {
 import React, { useEffect, useState } from 'react'
 import { getBitcoinPrice } from './api/Bitcoin'
 import './App.css'
+import BitcoinCard from './components/BitcoinCard/BitcoinCard'
 import LoadingCard from './components/LoadingCard/LoadingCard'
 
 const App = () => {
@@ -38,7 +39,13 @@ const App = () => {
           <IonTitle>Bitcoin Price Tracker</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent>{loading ? createLoadingCard() : null}</IonContent>
+      <IonContent>
+        {loading
+          ? createLoadingCard()
+          : Object.keys(bitcoinInfo.bpi).map(x => (
+              <BitcoinCard data={bitcoinInfo.bpi[x]} />
+            ))}
+      </IonContent>
     </IonApp>
   )
 }

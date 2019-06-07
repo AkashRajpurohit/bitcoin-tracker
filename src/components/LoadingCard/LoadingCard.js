@@ -6,6 +6,7 @@ import {
   IonSkeletonText,
 } from '@ionic/react'
 import React from 'react'
+import './LoadingCard.css'
 
 const LoadingCard = () => (
   <IonCard>
