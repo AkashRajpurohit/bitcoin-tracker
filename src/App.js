@@ -1,10 +1,4 @@
-import {
-  IonApp,
-  IonContent,
-  IonHeader,
-  IonTitle,
-  IonToolbar,
-} from '@ionic/react'
+import { IonApp, IonContent, IonIcon } from '@ionic/react'
 import React, { useEffect, useState } from 'react'
 import { getBitcoinPrice } from './api/Bitcoin'
 import './App.css'
@@ -34,20 +28,32 @@ const App = () => {
 
   return (
     <IonApp>
-      <IonHeader>
-        <IonToolbar color="primary">
-          <IonTitle>Bitcoin Price Tracker</IonTitle>
-        </IonToolbar>
-      </IonHeader>
       <IonContent>
+        <section className="bitcoin__header">
+          <IonIcon name="logo-bitcoin" style={logoStyles} />
+        </section>
         {loading
           ? createLoadingCard()
           : Object.keys(bitcoinInfo.bpi).map(x => (
-              <BitcoinCard data={bitcoinInfo.bpi[x]} />
+              <BitcoinCard
+                key={bitcoinInfo.bpi[x].code}
+                data={bitcoinInfo.bpi[x]}
+              />
             ))}
+        <section className="bitcoin__desclaimer">
+          <p>{bitcoinInfo.disclaimer}</p>
+        </section>
       </IonContent>
     </IonApp>
   )
+}
+
+const logoStyles = {
+  width: '140px',
+  height: '140px',
+  display: 'block',
+  margin: '0 auto',
+  color: 'white',
 }
 
 export default App
