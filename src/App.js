@@ -1,3 +1,10 @@
+import {
+  IonApp,
+  IonContent,
+  IonHeader,
+  IonTitle,
+  IonToolbar,
+} from '@ionic/react'
 import React, { useEffect, useState } from 'react'
 import { getBitcoinPrice } from './api/Bitcoin'
 import './App.css'
@@ -15,9 +22,14 @@ const App = () => {
     getInfo()
   }, [])
   return (
-    <div className="App">
-      <h1>Bitcoin Tracker</h1>
-    </div>
+    <IonApp>
+      <IonHeader>
+        <IonToolbar color="primary">
+          <IonTitle>Bitcoin Price Tracker</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      <IonContent>{JSON.stringify(bitcoinInfo)}</IonContent>
+    </IonApp>
   )
 }
 
