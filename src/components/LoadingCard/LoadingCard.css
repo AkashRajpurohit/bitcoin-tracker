@@ -1,0 +1,8 @@
+.loading-card__currency-name {
+  width: 50px;
+}
+
+.loading-card__currency-value {
+  width: 150px;
+  height: 30px;
+}

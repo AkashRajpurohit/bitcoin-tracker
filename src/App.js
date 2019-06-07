@@ -8,6 +8,7 @@ import {
 import React, { useEffect, useState } from 'react'
 import { getBitcoinPrice } from './api/Bitcoin'
 import './App.css'
+import LoadingCard from './components/LoadingCard/LoadingCard'
 
 const App = () => {
   const [loading, setLoading] = useState(true)
@@ -21,6 +22,15 @@ const App = () => {
     }
     getInfo()
   }, [])
+
+  const createLoadingCard = () => (
+    <React.Fragment>
+      <LoadingCard />
+      <LoadingCard />
+      <LoadingCard />
+    </React.Fragment>
+  )
+
   return (
     <IonApp>
       <IonHeader>
@@ -28,7 +38,7 @@ const App = () => {
           <IonTitle>Bitcoin Price Tracker</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent>{JSON.stringify(bitcoinInfo)}</IonContent>
+      <IonContent>{loading ? createLoadingCard() : null}</IonContent>
     </IonApp>
   )
 }
